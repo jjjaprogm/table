@@ -6,10 +6,9 @@ const TABLE_NUM_ROW = 20
 
 interface IStage {
   id: boolean,
-  firstName: boolean,
-  lastName: boolean,
-  email: boolean,
-  phone: boolean,
+  userId: boolean,
+  title: boolean,
+  body: boolean,
   sortMy: (col: keyof IStage) => void
 }
 
@@ -24,12 +23,18 @@ export class AppComponent implements OnInit {
   pageNum = 0;
   stage: IStage = {
     id: false,
-    firstName: false,
-    lastName: false,
-    email: false,
-    phone: false,
+    userId: false,
+    body: false,
+    title: false,
     sortMy: col => {
+      if( this.stage[col]){
+        document.getElementById(col)!.className = 'normal';
+      }else
+      {
+        document.getElementById(col)!.className = 'rotate';
+      }
       this.refPersonList.sort((a, b) => {
+        console.log('stttt')
         return this.stage[col] ? a[col] > b[col] ? 1 : -1 : a[col] > b[col] ? -1 : 1;
       });
       (this.stage[col] as boolean) = !this.stage[col];

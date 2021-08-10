@@ -1,50 +1,32 @@
+
+
 <table style="border: 1px solid black; border-collapse: collapse; width: 100%; text-align: center">
 <thead style="border: 1px solid black;">
 <tr>
   <th style="border: 1px solid black;">
-    №
-  </th>
-  <th style="border: 1px solid black;">
     ID
-    <input type="image" src="./assets/sortToSmall.png" alt="next page" style="width: 15px; height: 15px" (click)="stage.sortMy('id')">
+    <input  class="normal" id="id" type="image" src="./assets/sortToSmall.png" alt="next page" style="width: 15px; height: 15px"  (click)="stage.sortMy('id')">
   </th>
   <th style="border: 1px solid black;" >
-    Имя
-    <input type="image" src="./assets/sortToSmall.png" alt="next page" style="width: 15px; height: 15px" (click)="stage.sortMy('firstName')">
+    userId
+    <input class="normal" id="userId" type="image" src="./assets/sortToSmall.png" alt="next page" style="width: 15px; height: 15px" (click)="stage.sortMy('userId')">
   </th>
   <th style="border: 1px solid black;">
-    Фамилия
-    <input type="image" src="./assets/sortToSmall.png" alt="next page" style="width: 15px; height: 15px" (click)="stage.sortMy('lastName')">
-  </th>
-  <th style="border: 1px solid black;">
-    Почта
-    <input type="image" src="./assets/sortToSmall.png" alt="next page" style="width: 15px; height: 15px" (click)="stage.sortMy('email')">
-  </th>
-  <th style="border: 1px solid black;">
-    Телефон
-    <input type="image" src="./assets/sortToSmall.png" alt="next page" style="width: 15px; height: 15px" (click)="stage.sortMy('phone')">
+    Краткая информация
+    <input class="normal" id="title" type="image" src="./assets/sortToSmall.png" alt="next page" style="width: 15px; height: 15px" (click)="stage.sortMy('title')">
   </th>
 </tr>
 </thead>
 <tbody>
 <tr *ngFor="let row of refPersonList">
-  <td style="border: 1px solid black" >
-    {{row.num + 1}}
-  </td>
   <td style="border: 1px solid black;" (click)="fullPersonInfo('row.id')">
     {{row.id}}
   </td>
   <td style="border: 1px solid black;">
-    {{row.firstName}}
+    {{row.userId}}
   </td>
   <td style="border: 1px solid black;">
-    {{row.lastName}}
-  </td>
-  <td style="border: 1px solid black;">
-    {{row.email}}
-  </td>
-  <td style="border: 1px solid black;">
-    {{row.phone}}
+    {{row.title}}
   </td>
 </tr>
 </tbody>
