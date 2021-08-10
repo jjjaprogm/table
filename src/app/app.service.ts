@@ -11,7 +11,7 @@ export class AppService {
   }
 
   getAnswer() {
-    return this.http.get<IPerson[]>(`http://jsonplaceholder.typicode.com/posts`)
+    return this.http.get<IPerson[]>(`https://jsonplaceholder.typicode.com/posts`)
   }
 
 }
