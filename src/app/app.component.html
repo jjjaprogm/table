@@ -19,13 +19,13 @@
 </thead>
 <tbody>
 <tr *ngFor="let row of refPersonList">
-  <td style="width: 35px; text-align: center" (click)="fullPersonInfo(row)">
+  <td style="width: 35px; text-align: center; cursor: pointer;" (click)="fullPersonInfo(row)">
     {{row.id}}
   </td>
-  <td style="width: 35px; text-align: center" (click)="fullPersonInfo(row)">
+  <td style="width: 35px; text-align: center">
     {{row.userId}}
   </td>
-  <td (click)="fullPersonInfo(row)">
+  <td style="cursor: pointer;" (click)="fullPersonInfo(row)">
     {{row.title}}
   </td>
 </tr>
