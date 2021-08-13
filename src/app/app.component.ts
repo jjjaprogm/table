@@ -20,6 +20,7 @@ interface IStage {
 export class AppComponent implements OnInit {
   personList: IPerson[] = [];
   refPersonList: IPerson[] = [];
+  fullInfo: string = '';
   pageNum = 0;
   stage: IStage = {
     id: false,
@@ -34,7 +35,6 @@ export class AppComponent implements OnInit {
         document.getElementById(col)!.className = 'rotate';
       }
       this.refPersonList.sort((a, b) => {
-        console.log('stttt')
         return this.stage[col] ? a[col] > b[col] ? 1 : -1 : a[col] > b[col] ? -1 : 1;
       });
       (this.stage[col] as boolean) = !this.stage[col];
@@ -60,16 +60,16 @@ export class AppComponent implements OnInit {
    this.refPersonList = this.personList.slice(this.pageNum, this.pageNum + TABLE_NUM_ROW)
  }
 
- fullPersonInfo(param? : keyof IPerson){
-   console.log('info', param)
-
+ fullPersonInfo(row : IPerson){
+  this.fullInfo = row.body;
+   document.getElementById('reset')!.className = 'window-new';
  }
-
 
  getNum(){
     this.personList.forEach(function (v,i ){
       v.num = i;
     });
  }
+
 
 }

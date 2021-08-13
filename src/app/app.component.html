@@ -1,13 +1,13 @@
 
 
-<table style="border: 1px solid black; border-collapse: collapse; width: 100%; text-align: center">
+<table style="border: 1px solid black; border-collapse: collapse; width: 100%; text-align: center" id="position">
 <thead style="border: 1px solid black;">
 <tr>
-  <th style="border: 1px solid black;">
+  <th style="border: 1px solid black; width: 35px; text-align: center">
     ID
     <input  class="normal" id="id" type="image" src="./assets/sortToSmall.png" alt="next page" style="width: 15px; height: 15px"  (click)="stage.sortMy('id')">
   </th>
-  <th style="border: 1px solid black;" >
+  <th style="border: 1px solid black; width: 35px; text-align: center" >
     userId
     <input class="normal" id="userId" type="image" src="./assets/sortToSmall.png" alt="next page" style="width: 15px; height: 15px" (click)="stage.sortMy('userId')">
   </th>
@@ -19,13 +19,13 @@
 </thead>
 <tbody>
 <tr *ngFor="let row of refPersonList">
-  <td style="border: 1px solid black;" (click)="fullPersonInfo('row.id')">
+  <td style="width: 35px; text-align: center" (click)="fullPersonInfo(row)">
     {{row.id}}
   </td>
-  <td style="border: 1px solid black;">
+  <td style="width: 35px; text-align: center" (click)="fullPersonInfo(row)">
     {{row.userId}}
   </td>
-  <td style="border: 1px solid black;">
+  <td (click)="fullPersonInfo(row)">
     {{row.title}}
   </td>
 </tr>
@@ -34,4 +34,20 @@
 <div style="display: flex; justify-content: space-evenly">
   <input type="image" src="./assets/before.png" alt="before page" style="width: 30px; height: 30px" (click)="swapPage(true)">
   <input type="image" src="./assets/next.png" alt="next page" style="width: 30px; height: 30px" (click)="swapPage()">
+</div>
+
+
+<!--всплывающее окно с полной информацией-->
+<div class="window" id="reset">
+  <div class="window-body">
+    <div class="window-content">
+      <a href="" class="window-close">X</a>
+      <div class="window-title">
+        Полная информация:
+      </div>
+        <div class="window-text">
+          {{this.fullInfo}}
+        </div>
+    </div>
+  </div>
 </div>
