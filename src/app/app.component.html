@@ -36,12 +36,11 @@
   <input type="image" src="./assets/next.png" alt="next page" style="width: 30px; height: 30px" (click)="swapPage()">
 </div>
 
-
 <!--всплывающее окно с полной информацией-->
 <div class="window" id="reset">
   <div class="window-body">
     <div class="window-content">
-      <a href="" class="window-close">X</a>
+      <div class="window-close" style="cursor: pointer" (click)="closeFun()">X</div>
       <div class="window-title">
         Полная информация:
       </div>

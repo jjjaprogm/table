@@ -3,6 +3,9 @@ td {
   text-align: left;
   border: 1px solid black;
 }
+table {
+  width: 100%;
+}
  .rotate {
    -ms-transform: rotate(180deg);
    -webkit-transform: rotate(180deg);

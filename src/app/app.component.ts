@@ -20,6 +20,7 @@ interface IStage {
 export class AppComponent implements OnInit {
   personList: IPerson[] = [];
   refPersonList: IPerson[] = [];
+  displayedColumns: string[] = ['ID', 'userID', 'title'];
   fullInfo: string = '';
   pageNum = 0;
   stage: IStage = {
@@ -40,6 +41,7 @@ export class AppComponent implements OnInit {
       (this.stage[col] as boolean) = !this.stage[col];
     }
   }
+
 
   constructor(public answer: AppService) {
   }
@@ -71,5 +73,8 @@ export class AppComponent implements OnInit {
     });
  }
 
+  closeFun(){
+    document.getElementById('reset')!.className = 'window';
+  }
 
 }

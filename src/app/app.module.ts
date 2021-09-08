@@ -14,7 +14,7 @@ import {CommonModule} from "@angular/common";
     CommonModule,
     BrowserModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
