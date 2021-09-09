@@ -14,6 +14,10 @@
   <th style="border: 1px solid black;">
     Краткая информация
     <input class="normal" id="title" type="image" src="./assets/sortToSmall.png" alt="next page" style="width: 15px; height: 15px" (click)="stage.sortMy('title')">
+    <div style="display: flex; justify-content: end">
+    <input type="text" [(ngModel)]="findInput">
+      <button id="find" (click)="findFun(findInput)">Поиск</button>
+    </div>
   </th>
 </tr>
 </thead>
@@ -31,10 +35,13 @@
 </tr>
 </tbody>
 </table>
+<input class="loading" id="loading" type="image" src="./assets/loading.gif">
 <div style="display: flex; justify-content: space-evenly">
   <input type="image" src="./assets/before.png" alt="before page" style="width: 30px; height: 30px" (click)="swapPage(true)">
   <input type="image" src="./assets/next.png" alt="next page" style="width: 30px; height: 30px" (click)="swapPage()">
 </div>
+
+
 
 <!--всплывающее окно с полной информацией-->
 <div class="window" id="reset">

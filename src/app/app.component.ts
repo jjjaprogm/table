@@ -18,9 +18,9 @@ interface IStage {
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
+  findInput = '';
   personList: IPerson[] = [];
   refPersonList: IPerson[] = [];
-  displayedColumns: string[] = ['ID', 'userID', 'title'];
   fullInfo: string = '';
   pageNum = 0;
   stage: IStage = {
@@ -43,16 +43,22 @@ export class AppComponent implements OnInit {
   }
 
 
+
   constructor(public answer: AppService) {
   }
 
   ngOnInit(): void {
-    // todo переделать
+    this.loadingFun();
     this.answer.getAnswer().subscribe(response => {
       this.personList = response;
       this.getNum();
       this.refPersonList = this.personList.slice(0, TABLE_NUM_ROW);
+      this.loadingFun();
+      if(this.refPersonList.length == 0){
+        alert('Ошибка получения данных с сервера.')
+      }
     })
+
   }
 
 
@@ -75,6 +81,15 @@ export class AppComponent implements OnInit {
 
   closeFun(){
     document.getElementById('reset')!.className = 'window';
+  }
+
+  loadingFun(){
+    this.refPersonList.length ? document.getElementById('loading')!.className = 'loading-off' : document.getElementById('loading')!.className = 'loading';
+  }
+
+  findFun(f: string) {
+    let res = this.refPersonList.find(v => v.title === f);
+    console.log('res',res)
   }
 
 }
