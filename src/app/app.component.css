@@ -64,13 +64,5 @@ position: absolute;
 font-size: 40px;
   margin-bottom: 1em;
 }
-.loading-off{
-  display: none;
-  width: 10%;
-}
-.loading{
-  display: block;
-  width: 10%;
-}
 
 

@@ -1,5 +1,5 @@
 
-
+<img *ngIf="isLoaded" src="./assets/loading.gif" />
 <table style="border: 1px solid black; border-collapse: collapse; width: 100%; text-align: center" id="position">
 <thead style="border: 1px solid black;">
 <tr>
@@ -35,7 +35,6 @@
 </tr>
 </tbody>
 </table>
-<input class="loading" id="loading" type="image" src="./assets/loading.gif">
 <div style="display: flex; justify-content: space-evenly">
   <input type="image" src="./assets/before.png" alt="before page" style="width: 30px; height: 30px" (click)="swapPage(true)">
   <input type="image" src="./assets/next.png" alt="next page" style="width: 30px; height: 30px" (click)="swapPage()">
