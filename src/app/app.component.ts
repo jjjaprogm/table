@@ -49,17 +49,16 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.loadingFunction();
+    this.loadingTable();
     this.answer.getAnswer().subscribe(response => {
       this.personList = response;
       this.getNum();
       this.refPersonList = this.personList.slice(0, TABLE_NUM_ROW);
       this.saveCon = this.refPersonList;
-      this.loadingFunction();
-      if(this.refPersonList.length == 0){
-        alert('Ошибка получения данных с сервера.')
-      }
-    })
+      this.loadingTable();
+    }, error => {
+      console.log('Ошибка получения данных с сервера', error);
+    });
   }
 
 
@@ -80,15 +79,14 @@ export class AppComponent implements OnInit {
     });
  }
 
-  closeFunction(){
+  closeModalWindow(){
     document.getElementById('reset')!.className = 'window';
   }
 
-  loadingFunction(){
+  loadingTable(){
     this.refPersonList.length ? document.getElementById('loading')!.className = 'loading-off' : document.getElementById('loading')!.className = 'loading';
   }
-
-  findFunction(f: string) {
+  tableFilter(f: string) {
     if(f.length === 0){
       this.refPersonList = this.saveCon
     }else{
