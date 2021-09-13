@@ -16,7 +16,7 @@
     <input class="normal" id="title" type="image" src="./assets/sortToSmall.png" alt="next page" style="width: 15px; height: 15px" (click)="stage.sortMy('title')">
     <div style="display: flex; justify-content: end">
     <input type="text" [(ngModel)]="findInput">
-      <button id="find" (click)="findFun(findInput)">Поиск</button>
+      <button id="find" (click)="findFunction(findInput)">Поиск</button>
     </div>
   </th>
 </tr>
@@ -47,7 +47,7 @@
 <div class="window" id="reset">
   <div class="window-body">
     <div class="window-content">
-      <div class="window-close" style="cursor: pointer" (click)="closeFun()">X</div>
+      <div class="window-close" style="cursor: pointer" (click)="closeFunction()">X</div>
       <div class="window-title">
         Полная информация:
       </div>

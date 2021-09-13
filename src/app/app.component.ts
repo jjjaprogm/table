@@ -22,6 +22,7 @@ export class AppComponent implements OnInit {
   personList: IPerson[] = [];
   refPersonList: IPerson[] = [];
   fullInfo: string = '';
+  saveCon = this.refPersonList;
   pageNum = 0;
   stage: IStage = {
     id: false,
@@ -48,17 +49,17 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.loadingFun();
+    this.loadingFunction();
     this.answer.getAnswer().subscribe(response => {
       this.personList = response;
       this.getNum();
       this.refPersonList = this.personList.slice(0, TABLE_NUM_ROW);
-      this.loadingFun();
+      this.saveCon = this.refPersonList;
+      this.loadingFunction();
       if(this.refPersonList.length == 0){
         alert('Ошибка получения данных с сервера.')
       }
     })
-
   }
 
 
@@ -79,17 +80,20 @@ export class AppComponent implements OnInit {
     });
  }
 
-  closeFun(){
+  closeFunction(){
     document.getElementById('reset')!.className = 'window';
   }
 
-  loadingFun(){
+  loadingFunction(){
     this.refPersonList.length ? document.getElementById('loading')!.className = 'loading-off' : document.getElementById('loading')!.className = 'loading';
   }
 
-  findFun(f: string) {
-    let res = this.refPersonList.find(v => v.title === f);
-    console.log('res',res)
+  findFunction(f: string) {
+    if(f.length === 0){
+      this.refPersonList = this.saveCon
+    }else{
+      let res : IPerson[] = this.refPersonList.filter(v => v.title == f);
+      this.refPersonList = res;
+    }
   }
-
 }
