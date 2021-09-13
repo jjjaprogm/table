@@ -15,8 +15,8 @@
     Краткая информация
     <input class="normal" id="title" type="image" src="./assets/sortToSmall.png" alt="next page" style="width: 15px; height: 15px" (click)="stage.sortMy('title')">
     <div style="display: flex; justify-content: end">
-    <input type="text" [(ngModel)]="findInput">
-      <button id="find" (click)="tableFilter(findInput)">Поиск</button>
+    <input #input [(ngModel)]="findInput">
+<!--      <button id="find" (click)="tableFilter(findInput)">Поиск</button>-->
     </div>
   </th>
 </tr>
@@ -35,6 +35,7 @@
 </tr>
 </tbody>
 </table>
+
 <div style="display: flex; justify-content: space-evenly">
   <input type="image" src="./assets/before.png" alt="before page" style="width: 30px; height: 30px" (click)="swapPage(true)">
   <input type="image" src="./assets/next.png" alt="next page" style="width: 30px; height: 30px" (click)="swapPage()">

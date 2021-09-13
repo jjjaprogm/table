@@ -1,6 +1,8 @@
-import {Component, OnInit} from '@angular/core';
+import {AfterContentInit, AfterViewInit, Component, ElementRef, OnInit, ViewChild} from '@angular/core';
+import { Observable, fromEvent } from 'rxjs';
 import {IPerson} from "./app.interface";
 import {AppService} from "./app.service";
+import {debounceTime, map} from "rxjs/operators";
 
 const TABLE_NUM_ROW = 20
 
@@ -17,14 +19,15 @@ interface IStage {
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent implements OnInit {
+export class AppComponent implements OnInit, AfterViewInit {
   findInput = '';
   personList: IPerson[] = [];
   refPersonList: IPerson[] = [];
-  fullInfo: string = '';
+  fullInfo = '';
   isLoaded = false;
-  saveCon = this.refPersonList;
+  saveCon: IPerson[] = [];
   pageNum = 0;
+  @ViewChild('input',{static:false, read: ElementRef}) elInputRef: any
   stage: IStage = {
     id: false,
     userId: false,
@@ -33,8 +36,7 @@ export class AppComponent implements OnInit {
     sortMy: col => {
       if( this.stage[col]){
         document.getElementById(col)!.className = 'normal';
-      }else
-      {
+      } else {
         document.getElementById(col)!.className = 'rotate';
       }
       this.refPersonList.sort((a, b) => {
@@ -46,16 +48,14 @@ export class AppComponent implements OnInit {
 
 
 
-  constructor(public answer: AppService) {
-  }
+  constructor(public answer: AppService) {}
 
   ngOnInit(): void {
     this.isLoaded = true;
     this.answer.getAnswer().subscribe(response => {
       this.personList = response;
       this.getNum();
-      this.refPersonList = this.personList.slice(0, TABLE_NUM_ROW);
-      this.saveCon = this.refPersonList;
+      this.saveCon = this.refPersonList = this.personList.slice(0, TABLE_NUM_ROW);
       this.isLoaded = false;
     }, error => {
       console.log('Ошибка получения данных с сервера', error);
@@ -84,12 +84,19 @@ export class AppComponent implements OnInit {
     document.getElementById('reset')!.className = 'window';
   }
 
-  tableFilter(f: string) {
-    if(f.length === 0){
-      this.refPersonList = this.saveCon
-    }else{
-      let res : IPerson[] = this.refPersonList.filter(v => v.title.indexOf(f) !== -1);
-      this.refPersonList = res;
-    }
+  tableFilter(refEl: HTMLInputElement) {
+    console.log(refEl)
+      fromEvent(refEl, 'keyup')
+        .pipe(
+          map((e: any) => e.target.value),
+            debounceTime(2000)
+        )
+        .subscribe((item: string) => {
+          this.refPersonList = this.saveCon.filter(v => v.title.indexOf(item) !== -1);
+        })
+  }
+
+  ngAfterViewInit(): void {
+    this.tableFilter(this.elInputRef.nativeElement)
   }
 }
